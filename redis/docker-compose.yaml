@@ -1,0 +1,16 @@
+services:
+  redis:
+    container_name: "redis"
+    restart: unless-stopped
+    image: redis:6.2.7
+    command: "redis-server /usr/local/etc/redis/redis.conf"
+    ports:
+      - "${REDIS_PORT}:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - redis-data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+
+volumes:
+  redis-data:
