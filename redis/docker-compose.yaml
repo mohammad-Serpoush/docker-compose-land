@@ -5,7 +5,7 @@ services:
     image: redis:6.2.7
     command: "redis-server /usr/local/etc/redis/redis.conf"
     ports:
-      - "${REDIS_PORT}:6379"
+      - "6379:6379"
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     volumes:
