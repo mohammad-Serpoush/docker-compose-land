@@ -19,19 +19,9 @@ services:
       - 9090:9090
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      - prometheus_data:/prometheus    
+      - prometheus_data:/prometheus
     depends_on:
       - cadvisor
 
-  grafana:
-    container_name: grafana
-    image: grafana/grafana:9.1.5
-    restart: unless-stopped
-    ports:
-      - 3000:3000
-    volumes:
-      - grafana_data:/var/lib/grafana
-
 volumes:
-  prometheus_data: 
-  grafana_data: 
+  prometheus_data:
