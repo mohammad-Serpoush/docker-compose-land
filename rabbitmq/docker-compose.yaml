@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  rabbitmq3:
+    container_name: app_rabbitmq
+    restart: unless-stopped
+    image: rabbitmq:3.8-management-alpine
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    volumes:
+      - rabbit-data:/var/lib/rabbitmq
+volumes:
+  rabbit-data:
