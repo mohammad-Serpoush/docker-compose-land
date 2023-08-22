@@ -1,0 +1,27 @@
+services:
+  loki:
+    image: grafana/loki:2.8.0
+    container_name: "loki"
+    restart: unless-stopped
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - loki-logs:/loki
+
+  grafana:
+    image: grafana/grafana:8.3.3
+    restart: unless-stopped
+    container_name: "grafana"
+    ports:
+      - 3000:3000
+    volumes:
+      - ./config/grafana/provisioning:/etc/grafana/provisioning
+      - grafana-data:/var/lib/grafana
+    env_file:
+      - .env
+      
+
+volumes:
+  loki-logs:
+  grafana-data:
